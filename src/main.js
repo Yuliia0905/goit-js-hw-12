@@ -45,6 +45,7 @@ formElem.addEventListener('submit', async e => {
         'Sorry, there are no images matching your search query. Please try again!',
         'red'
       );
+      formElem.reset();
       hideLoader();
       return;
     }
@@ -71,6 +72,7 @@ loadBtn.addEventListener('click', async () => {
     const data = await getImages(image, page);
     const markup = imagesTemplate(data.hits);
     gallery.insertAdjacentHTML('beforeend', markup);
+    lightBox.refresh();
     skipPreviousElem();
   } catch (err) {
     infoMessage('ERROR');
@@ -103,7 +105,7 @@ function updBtnStatus() {
     if (maxPage) {
       iziToast.info({
         title: 'The End!',
-        message: 'The image collection is over!',
+        message: "We're sorry, but you've reached the end of search results.",
       });
     }
   } else {
