@@ -41,11 +41,11 @@ formElem.addEventListener('submit', async e => {
     const data = await getImages(image, page);
     maxPage = Math.ceil(data.totalHits / perPage);
     if (data.totalHits === 0) {
+      formElem.reset();
       infoMessage(
         'Sorry, there are no images matching your search query. Please try again!',
         'red'
       );
-      formElem.reset();
       hideLoader();
       return;
     }
